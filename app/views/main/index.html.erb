@@ -13,7 +13,7 @@
             <div class="row" id="curvedarrow"></div>
             <p style="color:blue;" id="left">Left click to add!</p>
         </div>
-        <div class="col-md-8 well">
+        <div class="col-md-8 well" id="scroll-select">
             <% @champs.each do |champ| %>
                 <%= tag("div", id: champ.name, class:"col-md-2 champion-select", title: champ.name) %>
                     <%= image_tag "LoLIcons/"+champ.image, class: "champ-icon" %>

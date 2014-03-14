@@ -12,7 +12,7 @@
  *= require_tree .
  */
 
-body {
+html, body {
     height: 100%;
     font-family: "Raleway", sans-serif;
     font-size: 16px;
@@ -109,4 +109,10 @@ p#right {
 #bluecompat {
     background-color: blue;
     color:white;
+}
+
+#scroll-select {
+    display: block;
+    height: 90%;
+    overflow-y: scroll;
 }
