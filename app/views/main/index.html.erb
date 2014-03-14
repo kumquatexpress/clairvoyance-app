@@ -6,7 +6,7 @@
         </div>
         <div class="col-md-2" id="blue-side">
             <% for i in Range.new(1,5) %>
-                <%= tag("div", id: "blue"+i.to_s, class: "row well") %>
+                <%= tag("div", id: "blue"+i.to_s, class: "row well selection") %>
                 </div>
             <% end %>
             <div class="row well" id="bluecompat"></div>
@@ -22,7 +22,7 @@
         </div>
         <div class="col-md-2" id="purple-side">
             <% for i in Range.new(1,5) %>
-                <%= tag("div", id: "purple"+i.to_s, class: "row well") %>
+                <%= tag("div", id: "purple"+i.to_s, class: "row well selection") %>
                 </div>
             <% end %>            
             <div class="row well" id="purplecompat"></div>

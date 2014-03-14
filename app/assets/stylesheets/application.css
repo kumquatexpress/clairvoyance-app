@@ -1,0 +1,112 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+body {
+    height: 100%;
+    font-family: "Raleway", sans-serif;
+    font-size: 16px;
+}
+
+#main-container {
+    height: 100%;
+}
+
+.champ-icon {
+    height: 100%;
+    width: 100%;
+}
+
+.row {
+    text-align: center;
+}
+
+#banner {
+    text-align: center;
+    font-size: 22px;
+}
+
+#curvedarrow {
+  position: relative;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-right: 10px solid blue;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+}
+
+#curvedarrow:after {
+  content: "";
+  position: absolute;
+  border: 0 solid transparent;
+  border-top: 3px solid blue;
+  border-radius: 20px 0 0 0;
+  top: -15px;
+  left: -12px;
+  width: 15px;
+  height: 15px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
+
+#curvedarrow2 {
+  position: relative;
+  margin-left: 100%;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-right: 10px solid purple;
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+}
+
+#curvedarrow2:after {
+  content: "";
+  position: absolute;
+  border: 0 solid transparent;
+  border-top: 3px solid purple;
+  border-radius: 20px 0 0 0;
+  top: -19px;
+  left: -4px;
+  width: 15px;
+  height: 15px;
+  -webkit-transform: rotate(280deg);
+  -moz-transform: rotate(280deg);
+  -ms-transform: rotate(280deg);
+  -o-transform: rotate(280deg);
+}
+
+p#left {
+    text-align: left;
+}
+
+p#right {
+    text-align: right;
+}
+
+#purplecompat {
+    background-color: purple;
+    color: white;
+}
+
+#bluecompat {
+    background-color: blue;
+    color:white;
+}
