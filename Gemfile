@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+group :development do
+    gem 'thin'
+end
+
 group :production do 
   gem 'unicorn'
   gem 'unicorn-worker-killer'

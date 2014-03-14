@@ -14,12 +14,22 @@
 
 html, body {
   height: 100%;
+}
+
+.jumbotron {
   font-family: "Raleway", sans-serif;
-  font-size: 16px;
+  font-size: 12px;
+}
+
+.jumbotron p {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
 }
 
 #main-container {
   height: 100%;
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
 }
 
 .champ-icon {
