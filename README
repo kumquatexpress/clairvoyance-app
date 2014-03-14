@@ -1,0 +1,1 @@
+Clairvoyance is a Rails 4.0 app that loads in data about recent games in League of Legends and then analyzes it to generate a "compatibility score" between any two champions.  It then lets you pick a team composition and gives you a final score using these scores.  Work in progress.

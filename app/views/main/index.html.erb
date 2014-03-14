@@ -1,0 +1,33 @@
+<body oncontextmenu="return false;">
+    <div class="container-fluid" id="main-container">
+        <div id="banner" class="row">
+            <%= image_tag "LoLIcons/Clairvoyance.png" %>
+            <p>Clairvoyance</p>
+        </div>
+        <div class="col-md-2" id="blue-side">
+            <% for i in Range.new(1,5) %>
+                <%= tag("div", id: "blue"+i.to_s, class: "row well") %>
+                </div>
+            <% end %>
+            <div class="row well" id="bluecompat"></div>
+            <div class="row" id="curvedarrow"></div>
+            <p style="color:blue;" id="left">Left click to add!</p>
+        </div>
+        <div class="col-md-8 well">
+            <% @champs.each do |champ| %>
+                <%= tag("div", id: champ.name, class:"col-md-2 champion-select", title: champ.name) %>
+                    <%= image_tag "LoLIcons/"+champ.image, class: "champ-icon" %>
+                </div>
+            <% end %>
+        </div>
+        <div class="col-md-2" id="purple-side">
+            <% for i in Range.new(1,5) %>
+                <%= tag("div", id: "purple"+i.to_s, class: "row well") %>
+                </div>
+            <% end %>            
+            <div class="row well" id="purplecompat"></div>
+            <div class="row" id="curvedarrow2"></div>
+            <p style="color:purple;" id="right">Right click to add!</p>     
+        </div>
+    </div>
+</body>
