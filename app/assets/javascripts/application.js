@@ -109,6 +109,7 @@ function run_calculation(side){
     var champ_ids = [];
     var teamcompat;
     var indv_compats = [];
+    var detail_box;
 
     if(side == purple_side){
         lastchamp = purple_num;
@@ -124,23 +125,32 @@ function run_calculation(side){
     for(var i = 1; i < lastchamp; i++){
         champ_ids.push($(side + i + " img").attr("data-id"));
     }
-    champ_ids.forEach(function(cid1){
-        var champ_compat = 0;
-        champ_ids.forEach(function(cid2){
+    for(var i = 0; i < champ_ids.length; i++){
+        var cid1 = champ_ids[i];
+        var c1;
+        for(var j = i; j < champ_ids.length; j++){
+            var cid2 = champ_ids[j];
+            var c2;
+            var games;
+            var wins;
             $.ajax({
                 url: "champion/compatibility/"+cid1+"/"+cid2,
                 type: "GET",
                 async: false,
                 dataType: "json",
             }).success(function(html){
-                champ_compat += html.compat;
+                indv_compats.push(html.compat);
+                games = html.num_games;
+                wins = html.wins;
+
+                c1 = html.c1;
+                c2 = html.c2;
             });
-        });
-        indv_compats.push(champ_compat);
+        }
+    }   
 
-    });
+    teamcompat = Math.pow(indv_compats.reduce(function(a,b){return a*b;}), 1/(indv_compats.length));
 
-    teamcompat = indv_compats.reduce(function(a,b){return a*b;});
     $(side+"compat").html(Math.round(teamcompat*10000)/100).fadeIn(500);
 
 }
