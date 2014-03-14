@@ -5,4 +5,8 @@ class MainController < ApplicationController
         @compat = @champs.map{|x| Compatibility.find(x.compatibility_id)}
     end
 
+    def riot
+    
+    end
+
 end
