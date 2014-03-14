@@ -13,27 +13,36 @@
  */
 
 html, body {
-    height: 100%;
-    font-family: "Raleway", sans-serif;
-    font-size: 16px;
+  height: 90%;
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
 }
 
 #main-container {
-    height: 100%;
+  height: 100%;
 }
 
 .champ-icon {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 .row {
-    text-align: center;
+  text-align: center;
+}
+
+#main-row {
+  height: 100%;
 }
 
 #banner {
-    text-align: center;
-    font-size: 22px;
+  display: none;
+  width: 100%;
+  background-color: rgba(255,255,255,0.85);
+  position:absolute;
+  text-align: center;
+  font-size: 26px;
+  z-index: 1;
 }
 
 #curvedarrow {

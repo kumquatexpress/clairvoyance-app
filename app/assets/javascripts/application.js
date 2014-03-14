@@ -21,7 +21,7 @@ var blue_side = "#blue";
 var purple_side = "#purple";
 
 $(document).ready(function(){
-    $("#banner").fadeOut({duration: 1400, easing: 'linear'});
+    $("#banner").fadeIn(2000).fadeOut({duration: 1400, easing: 'linear'});
 
     $(".selection").mouseup(function(e){
         $(this).empty();
@@ -84,6 +84,24 @@ $(document).ready(function(){
             run_calculation(whichside);
         });
     });
+
+    $(".filter").click(function(){
+        var type = $(this).attr("id");
+        var icons = $(".champion-select");
+        if(type == "all"){
+            icons.css("display","inline");
+        } else {
+            icons.each(function(index, icon){
+                if(icon.attributes.datatype.value.split(",").indexOf(type) == -1){
+                    icon.style.display = "none";
+                } else {
+                    icon.style.display = "inline";
+                }
+            });
+        }
+        $("#banner").html(type).fadeIn(1000).fadeOut(2500);
+    });
+
 });
 
 function run_calculation(side){

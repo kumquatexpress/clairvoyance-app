@@ -16,8 +16,7 @@
 /tmp
 /config
 /bin
-/db
 /public
 /test
 /log
-/scripts/constants.js
+/scripts/constants*

@@ -4,30 +4,53 @@
             <%= image_tag "LoLIcons/Clairvoyance.png" %>
             <p>Clairvoyance</p>
         </div>
-        <div class="col-md-2" id="blue-side">
-            <% for i in Range.new(1,5) %>
-                <%= tag("div", id: "blue"+i.to_s, class: "row well selection") %>
-                </div>
-            <% end %>
-            <div class="row well" id="bluecompat"></div>
-            <div class="row" id="curvedarrow"></div>
-            <p style="color:blue;" id="left">Left click to add!</p>
+        <div class="row" id="main-row">
+            <div class="col-md-2" id="blue-side">
+                <% for i in Range.new(1,5) %>
+                    <%= tag("div", id: "blue"+i.to_s, class: "row well selection") %>
+                    </div>
+                <% end %>
+                <div class="row well" id="bluecompat"></div>
+                <div class="row" id="curvedarrow"></div>
+                <p style="color:blue;" id="left">Left click to add!</p>
+            </div>
+            <div class="col-md-8 well" id="scroll-select">
+                <% @champs.each do |champ| %>
+                    <%= tag("div", {id: champ.name, class:"col-md-2 champion-select", title: champ.name, datatype: champ.types}) %>
+                        <%= image_tag "LoLIcons/"+champ.image, class: "champ-icon" %>
+                    </div>
+                <% end %>
+            </div>
+            <div class="col-md-2" id="purple-side">
+                <% for i in Range.new(1,5) %>
+                    <%= tag("div", id: "purple"+i.to_s, class: "row well selection") %>
+                    </div>
+                <% end %>            
+                <div class="row well" id="purplecompat"></div>
+                <div class="row" id="curvedarrow2"></div>
+                <p style="color:purple;" id="right">Right click to add!</p>     
+            </div>
         </div>
-        <div class="col-md-8 well" id="scroll-select">
-            <% @champs.each do |champ| %>
-                <%= tag("div", id: champ.name, class:"col-md-2 champion-select", title: champ.name) %>
-                    <%= image_tag "LoLIcons/"+champ.image, class: "champ-icon" %>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="btn-group dropup">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Filter By...
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a class="filter" id="tank">Tank</a></li>
+                        <li><a class="filter" id="fighter">Fighter</a></li>
+                        <li><a class="filter" id="marksman">Marksman</a></li>
+                        <li><a class="filter" id="mage">Mage</a></li>
+                        <li><a class="filter" id="support">Support</a></li>
+                        <li><a class="filter" id="assassin">Assassin</a></li>
+                        <li><a class="filter" id="all">All</a></li>
+                    </ul>
                 </div>
-            <% end %>
-        </div>
-        <div class="col-md-2" id="purple-side">
-            <% for i in Range.new(1,5) %>
-                <%= tag("div", id: "purple"+i.to_s, class: "row well selection") %>
-                </div>
-            <% end %>            
-            <div class="row well" id="purplecompat"></div>
-            <div class="row" id="curvedarrow2"></div>
-            <p style="color:purple;" id="right">Right click to add!</p>     
+            </div>
+            <div class="col-md-2"></div>
         </div>
     </div>
 </body>
