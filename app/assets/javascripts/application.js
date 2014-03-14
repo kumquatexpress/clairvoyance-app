@@ -21,6 +21,7 @@ var blue_side = "#blue";
 var purple_side = "#purple";
 
 $(document).ready(function(){
+
     $("#banner").fadeIn(2000).fadeOut({duration: 1400, easing: 'linear'});
 
     $(".selection").mouseup(function(e){
@@ -153,4 +154,21 @@ function run_calculation(side){
 
     $(side+"compat").html(Math.round(teamcompat*10000)/100).fadeIn(500);
 
+}
+
+function runsearch(){
+    var substring = $("#searchbar").val().toLowerCase();
+    var icons = $(".champion-select");
+    if(substring == ""){
+        icons.css("display","inline");
+    } else {
+        icons.each(function(index, icon){
+            if(icon.attributes.title.value.toLowerCase().indexOf(substring) == -1){
+                icon.style.display = "none";
+            } else {
+                icon.style.display = "inline";
+            }
+        });
+    }
+    $("#banner").html(substring).fadeIn(500);
 }
