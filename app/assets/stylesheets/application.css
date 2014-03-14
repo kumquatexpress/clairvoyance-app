@@ -13,7 +13,7 @@
  */
 
 html, body {
-  height: 90%;
+  height: 100%;
   font-family: "Raleway", sans-serif;
   font-size: 16px;
 }
@@ -122,6 +122,15 @@ p#right {
 
 #scroll-select {
     display: block;
-    height: 90%;
+    height: 95%;
     overflow-y: scroll;
+}
+
+#footer {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
+    font-size: 8px;
 }

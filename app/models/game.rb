@@ -6,6 +6,9 @@ class Game < ActiveRecord::Base
     self.primary_key = 'id'
 
     def process_game
+        if self.processed
+            return
+        end
         tc1, tc2 = self.team_comps
         blue_ids = [tc1.c1, tc1.c2, tc1.c3, tc1.c4, tc1.c5]
         purple_ids = [tc2.c1, tc2.c2, tc2.c3, tc2.c4, tc2.c5]
@@ -47,6 +50,15 @@ class Game < ActiveRecord::Base
             count += 1
         end
         count
+    end
+
+    def self.process_in_reverse
+        count = 0
+        Game.where(processed: false).reverse.each do |g|
+            g.process_game
+            count += 1
+        end
+        count        
     end
 
 end
