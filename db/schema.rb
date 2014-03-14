@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140314032939) do
+ActiveRecord::Schema.define(version: 20140314223039) do
 
   create_table "champions", force: true do |t|
     t.string   "image"
@@ -54,6 +54,11 @@ ActiveRecord::Schema.define(version: 20140314032939) do
   add_index "games_items", ["game_id"], name: "game_id_ix", using: :btree
   add_index "games_items", ["item_id"], name: "item_id_ix", using: :btree
 
+  create_table "games_players", id: false, force: true do |t|
+    t.integer "game_id",   limit: 8
+    t.integer "player_id", limit: 8
+  end
+
   create_table "games_team_comps", id: false, force: true do |t|
     t.integer "game_id",      limit: 8
     t.integer "team_comp_id", limit: 8
@@ -73,6 +78,7 @@ ActiveRecord::Schema.define(version: 20140314032939) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "tier",       default: "none"
   end
 
   create_table "team_comps", id: false, force: true do |t|

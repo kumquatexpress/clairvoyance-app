@@ -2,6 +2,7 @@ class Game < ActiveRecord::Base
     has_and_belongs_to_many :items
     has_and_belongs_to_many :champions
     has_and_belongs_to_many :team_comps
+    has_and_belongs_to_many :players
 
     self.primary_key = 'id'
 

@@ -18,9 +18,10 @@ def get_json(player, key=API_KEY)
         return []
     end
     data = dict["games"]
-    players_returned = []
+    players_returned_total = []
 
     data.each do |game|
+        players_returned = []
         bluePlayers = []
         purplePlayers = []
         begin
@@ -43,7 +44,7 @@ def get_json(player, key=API_KEY)
 
                 begin
                     player_id = player["summonerId"]
-                    p = Player.create(
+                    p = Player.find_or_create_by(
                         id: player_id)
                     players_returned << player_id
                 rescue
@@ -86,14 +87,16 @@ def get_json(player, key=API_KEY)
                         id: id,
                         win: win)
                     g.team_comps = [tc1,tc2]
+                    g.players = players_returned
                     g.save
                 rescue
                     print "Duplicate Game!"
                 end
             end
+            players_returned_total.concat(players_returned)
         end
     end
 
-    players_returned
+    players_returned_total
 
 end
