@@ -38,7 +38,7 @@ html, body {
 }
 
 .champ-icon {
-  height: 100%;
+  height: auto;
   max-width: 100%;
 }
 
@@ -147,8 +147,4 @@ p#right {
     height: 3em;
     margin-top: -3em;
     font-size: 8px;
-}
-
-.champ-image {
-  width: 100%;
 }

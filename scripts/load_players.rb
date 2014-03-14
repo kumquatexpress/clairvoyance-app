@@ -11,7 +11,7 @@ def update_tier
     Player.where.not(tier: "").each do |p|
         begin
             dict = JSON.parse(Net::HTTP.get(get_request_uri(p.id)))
-            p.tier = dict.tier
+            p.tier = dict.first["tier"]
             p.save
         rescue
             print "No player found!"
