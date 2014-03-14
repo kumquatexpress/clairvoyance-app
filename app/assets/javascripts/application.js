@@ -74,7 +74,7 @@ $(document).ready(function(){
             type: "GET",
             dataType: "json",
         }).success(function(html){
-            var image = '<img src=' + src + ' data-id=' + html[0].id + '>';
+            var image = '<img class="champ-image" src=' + src + ' data-id=' + html[0].id + '>';
 
             $(whichside+whichnum).html(image);
             if(whichside == blue_side){

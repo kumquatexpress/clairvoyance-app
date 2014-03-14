@@ -14,6 +14,11 @@
 
 html, body {
   height: 100%;
+  width: 100%;
+}
+
+.container-fluid {
+  width: auto;
 }
 
 .jumbotron {
@@ -34,7 +39,7 @@ html, body {
 
 .champ-icon {
   height: 100%;
-  width: 100%;
+  max-width: 100%;
 }
 
 .row {
@@ -131,7 +136,6 @@ p#right {
 }
 
 #scroll-select {
-    display: block;
     height: 95%;
     overflow-y: scroll;
 }
@@ -143,4 +147,8 @@ p#right {
     height: 3em;
     margin-top: -3em;
     font-size: 8px;
+}
+
+.champ-image {
+  width: 100%;
 }

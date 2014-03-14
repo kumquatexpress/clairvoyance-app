@@ -5,7 +5,7 @@
             <p>Clairvoyance</p>
         </div>
         <div class="row" id="main-row">
-            <div class="col-md-2" id="blue-side">
+            <div class="col-xs-2" id="blue-side">
                 <% for i in Range.new(1,5) %>
                     <%= tag("div", id: "blue"+i.to_s, class: "row well selection") %>
                     </div>
@@ -14,10 +14,10 @@
                 <div class="row" id="curvedarrow"></div>
                 <p style="color:blue;" id="left">Left click to add!</p>
             </div>
-            <div class="col-md-8 well" style="height:100%">
+            <div class="col-xs-8 well" style="height:100%">
                 <div id="scroll-select">
                     <% @champs.each do |champ| %>
-                        <%= tag("div", {id: champ.name, class:"col-md-2 champion-select", title: champ.name, datatype: champ.types}) %>
+                        <%= tag("div", {id: champ.name, class:"col-xs-2 champion-select", title: champ.name, datatype: champ.types}) %>
                             <%= image_tag "LoLIcons/"+champ.image, class: "champ-icon" %>
                         </div>
                     <% end %>
@@ -39,7 +39,7 @@
                 </div>
                 <input type="text" id="searchbar" oninput=runsearch()>                
             </div>
-            <div class="col-md-2" id="purple-side">
+            <div class="col-xs-2" id="purple-side">
                 <% for i in Range.new(1,5) %>
                     <%= tag("div", id: "purple"+i.to_s, class: "row well selection") %>
                     </div>
