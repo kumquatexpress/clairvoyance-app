@@ -15,10 +15,23 @@
 //= require turbolinks
 //= require_tree .
 
+
 var blue_num = 1;
 var purple_num = 1;
 var blue_side = "#blue";
 var purple_side = "#purple";
+var tier_color_map = {
+    "-1": 'unranked',
+    "0": 'unranked',
+    "1": 'bronze',
+    "2": 'silver',
+    "3": 'gold',
+    "4": 'platinum',
+    "5": 'diamond',
+    "6": 'challenger'
+};
+
+var border_classes = "unranked bronze silver gold platinum diamond challenger";
 
 $(document).ready(function(){
 
@@ -31,7 +44,8 @@ $(document).ready(function(){
             //clicked on a blue team selection
             if(blue_num > 1){ //does blue team have anything on it?
                 var max_well = $(blue_side+(blue_num-1)); //last filled slot
-                $(this).append(max_well.find("img")); //switch the empty one
+                $(this).addClass(max_well.attr("class"))
+                    .append(max_well.removeClass(border_classes).children()); //switch the empty one
 
                 blue_num -= 1;
                 run_calculation(blue_side);
@@ -40,7 +54,8 @@ $(document).ready(function(){
         if(sid.indexOf("purple") != -1){
             if(purple_num > 1){ //does blue team have anything on it?
                 var max_well = $(purple_side+(purple_num-1)); //last filled slot
-                $(this).append(max_well.find("img")); //switch the empty one
+                $(this).addClass(max_well.attr("class"))
+                    .append(max_well.removeClass(border_classes).children()); //switch the empty one
 
                 purple_num -= 1;
                 run_calculation(purple_side);
@@ -197,15 +212,21 @@ function livesearch(){
             purple_num = 1;
 
             $.each(blue, function(index){
-                var image = '<img class="champ-image" src=' + $(preid + blue[index]).attr("src") + ' data-id=' + blue[index] + '>';
-                $(blue_side+blue_num).html(image);
+                var tier = blue[index][0];
+                var champion = blue[index][1];
+                var image = '<img class="row champ-image" src=' + $(preid + champion).attr("src") + ' data-id=' + champion + '>';
+                var summoner_name = '<div class="row">' + index + '</div>'
+                $(blue_side+blue_num).html(image + summoner_name).toggleClass(tier_color_map[tier]);
                 blue_num += 1;
             });
             run_calculation(blue_side);
 
             $.each(purple, function(index){
-                var image = '<img class="champ-image" src=' + $(preid + purple[index]).attr("src") + ' data-id=' + purple[index] + '>';
-                $(purple_side+purple_num).html(image);
+                var tier = purple[index][0];
+                var champion = purple[index][1];
+                var image = '<img class="row champ-image" src=' + $(preid + champion).attr("src") + ' data-id=' + champion + '>';
+                var summoner_name = '<div class="row">' + index + '</div>'
+                $(purple_side+purple_num).html(image + summoner_name).toggleClass(tier_color_map[tier]).attr("title", tier_color_map[tier]);
                 purple_num += 1;
             });    
             run_calculation(purple_side);

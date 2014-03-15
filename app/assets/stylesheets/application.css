@@ -184,3 +184,49 @@ p#right {
 .has-spinner.btn-large.active .spinner {
     width: 19px;
 }
+
+.unranked {
+  border: none;
+}
+
+.bronze {
+  border-radius: 15px 15px 15px 15px;
+  -moz-border-radius: 15px 15px 15px 15px;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  border: 3px solid #3d3423;
+}
+
+.silver {
+  border-radius: 15px 15px 15px 15px;
+  -moz-border-radius: 15px 15px 15px 15px;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  border: 4px groove #8287a3;
+}
+
+.gold {
+  border-radius: 15px 15px 15px 15px;
+  -moz-border-radius: 15px 15px 15px 15px;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  border: 6px ridge #a8964f;
+}
+
+.platinum {
+  border-radius: 15px 15px 15px 15px;
+  -moz-border-radius: 15px 15px 15px 15px;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  border: 7px ridge #d5daed;
+}
+
+.diamond {
+  border-radius: 15px 15px 15px 15px;
+  -moz-border-radius: 15px 15px 15px 15px;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  border: 8px ridge #7fb9ff;  
+}
+
+.challenger {
+  border-radius: 15px 15px 15px 15px;
+  -moz-border-radius: 15px 15px 15px 15px;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  border: 10px groove #eda617;
+}
