@@ -207,7 +207,7 @@ p#right {
   border-radius: 15px 15px 15px 15px;
   -moz-border-radius: 15px 15px 15px 15px;
   -webkit-border-radius: 15px 15px 15px 15px;
-  border: 6px ridge #a8964f;
+  border: 4px ridge #a8964f;
 }
 
 .platinum {
@@ -221,12 +221,14 @@ p#right {
   border-radius: 15px 15px 15px 15px;
   -moz-border-radius: 15px 15px 15px 15px;
   -webkit-border-radius: 15px 15px 15px 15px;
-  border: 8px ridge #7fb9ff;  
+  border: 7px ridge #7fb9ff;  
+  outline: 3px ridge blue;
 }
 
 .challenger {
   border-radius: 15px 15px 15px 15px;
   -moz-border-radius: 15px 15px 15px 15px;
   -webkit-border-radius: 15px 15px 15px 15px;
-  border: 10px groove #eda617;
+  border: 7px groove #edd517;
+  outline: 3px groove blue;
 }

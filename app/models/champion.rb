@@ -8,9 +8,11 @@ class Champion < ActiveRecord::Base
     end
 
     def get_compat(id)
-        comid = self.compatibility_id
+        return_full_compat.compat[id.to_i]
+    end
 
-        Compatibility.find(comid).compat[id.to_i]
+    def return_full_compat
+        Compatibility.find(self.compatibility_id)
     end
 
     def get_self_compat

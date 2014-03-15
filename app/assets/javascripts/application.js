@@ -150,20 +150,21 @@ $(document).ready(function(){
                 $.each(blue, function(index){
                     var tier = blue[index][0];
                     var champion = blue[index][1];
+                    var pid = blue[index][2];
                     var tier_color;
-                    /*if(tier == -1){
+                    if(tier == -1){
                         $.ajax({
-                            url:"champion/"+champion,
+                            url:"player/"+pid,
                             type: "GET"
-                        }).success(function(html){
+                        }).done(function(html){
                             if(html["tier"]){
                                 tier_color = html["tier"].toLowerCase();
                             }
                         });
                     } else {
                         tier_color = tier_color_map[tier];
-                    }*/
-                    tier_color = tier_color_map[tier];
+                    }
+                    //tier_color = tier_color_map[tier];
                     var image = '<img class="row champ-image" src=' + $(preid + champion).attr("src") + ' data-id=' + champion + '>';
                     var summoner_name = '<div class="row">' + index + '</div>'
                     $(blue_side+blue_num).html(image + summoner_name).toggleClass(tier_color).attr("title", tier_color);
@@ -173,10 +174,11 @@ $(document).ready(function(){
 
                 $.each(purple, function(index){
                     var tier = purple[index][0];
+                    var pid = purple[index][2];
                     var tier_color;
-                    /*if(tier == -1){
+                    if(tier == -1){
                         $.ajax({
-                            url:"champion/id/"+champion,
+                            url:"player/"+pid,
                             type: "GET"
                         }).success(function(html){
                             if(html["tier"]){
@@ -185,8 +187,7 @@ $(document).ready(function(){
                         });
                     } else {
                         tier_color = tier_color_map[tier];
-                    }*/
-                    tier_color = tier_color_map[tier];
+                    }
                     var champion = purple[index][1];
                     var image = '<img class="row champ-image" src=' + $(preid + champion).attr("src") + ' data-id=' + champion + '>';
                     var summoner_name = '<div class="row">' + index + '</div>'
@@ -228,31 +229,15 @@ function run_calculation(side){
     for(var i = 1; i < lastchamp; i++){
         champ_ids.push($(side + i + " img").attr("data-id"));
     }
-    for(var i = 0; i < champ_ids.length; i++){
-        var cid1 = champ_ids[i];
-        var c1;
-        for(var j = i; j < champ_ids.length; j++){
-            var cid2 = champ_ids[j];
-            var c2;
-            var games;
-            var wins;
-            $.ajax({
-                url: "champion/compatibility/"+cid1+"/"+cid2,
-                type: "GET",
-                async: false,
-                dataType: "json",
-            }).success(function(html){
-                indv_compats.push(html.compat);
-                games = html.num_games;
-                wins = html.wins;
 
-                c1 = html.c1;
-                c2 = html.c2;
-            });
-        }
-    }   
-
-    teamcompat = Math.pow(indv_compats.reduce(function(a,b){return a*b;}), 1/(indv_compats.length));
+    $.ajax({
+        url: "champion/teamcomp/"+champ_ids,
+        type: "GET",
+        async: false,
+        dataType: "json"
+    }).success(function(html){
+        teamcompat = html["compat"];
+    });
 
     $(side+"compat").html(Math.round(teamcompat*10000)/100).fadeIn(500);
 

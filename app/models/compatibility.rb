@@ -47,6 +47,20 @@ class Compatibility < ActiveRecord::Base
         Champion.all.zip(c.map{|x| get_compat x}).sort_by{|ch, com| com * -1}[0..count-1]
     end
 
+    def self.get_teamcomp_compat(cid_list)
+        total_compat = 1;
+        cid_list.each do |cid|
+            indiv_compat = 1;
+            compat = Champion.find(cid).return_full_compat
+            cid_list.each do |cid|
+                indiv_compat *= compat.get_compat(cid)
+            end
+            indiv_compat **= (1.0/cid_list.length)
+            total_compat *= indiv_compat
+        end
+        total_compat ** (1.0/cid_list.length)
+    end
+
     def get_compat champid
         nums = self.compat[champid]
         nums[:c].to_f/nums[:n]

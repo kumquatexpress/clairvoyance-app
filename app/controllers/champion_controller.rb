@@ -23,4 +23,9 @@ class ChampionController < ApplicationController
         render json: champ
     end
 
+    def find_compat_team_comp
+        cid_list = params[:cids].split(",").map{|x| x.to_i}
+        render json: { :compat => Compatibility.get_teamcomp_compat(cid_list) }
+    end
+
 end
