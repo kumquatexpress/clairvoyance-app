@@ -176,10 +176,13 @@ function runsearch(){
 function livesearch(){
     var name = $("#live-search-name").val().split(' ').join('_');
     var preid = "#champ-pic";
+
+    $("#live-button").toggleClass('active');
+
     $.ajax({
         url: "live/"+name,
         type: "GET",
-        async: false,
+        async: true,
         dataType: "json",
     }).success(function(html){
         if(!html){
@@ -205,9 +208,13 @@ function livesearch(){
                 purple_num += 1;
             });    
             run_calculation(purple_side);
+
+            $("#live-button").toggleClass('active');
         }    
     }).error(function(html){
         var errormsg = "Not in a game";
-        $("#banner").html(errormsg).fadeIn(500).fadeOut(500);        
+        $("#banner").html(errormsg).fadeIn(500).fadeOut(500);    
+
+        $("#live-button").toggleClass('active');
     });    
 }

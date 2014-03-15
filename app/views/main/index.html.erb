@@ -2,7 +2,7 @@
     <div class="container-fluid" id="main-container">
         <div id="live-search" class="row">
             <input type="text" id="live-search-name" placeholder="Summoner Name"></input>
-            <button class="btn btn-default" onClick="livesearch()">Live Search!</button>
+            <button id="live-button" class="btn btn-default has-spinner" onClick="livesearch()">Live Search!<span class="spinner"><i class="icon-spin icon-refresh"></i></span></button>
         </div>
         <div id="banner" class="row">
             <%= image_tag "LoLIcons/Clairvoyance.png" %>
