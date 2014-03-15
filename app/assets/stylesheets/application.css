@@ -57,7 +57,15 @@ html, body {
   position:absolute;
   text-align: center;
   font-size: 26px;
+  z-index: 2;
+}
+
+#live-search {
+  position: absolute;
+  background-color: rgba(255,255,255,0.8);
   z-index: 1;
+  width: 100%;
+  float:right;
 }
 
 #curvedarrow {

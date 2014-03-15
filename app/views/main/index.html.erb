@@ -1,5 +1,9 @@
 <body oncontextmenu="return false;">
     <div class="container-fluid" id="main-container">
+        <div id="live-search" class="row">
+            <input type="text" id="live-search-name" placeholder="Summoner Name"></input>
+            <button class="btn btn-default" onClick="livesearch()">Live Search!</button>
+        </div>
         <div id="banner" class="row">
             <%= image_tag "LoLIcons/Clairvoyance.png" %>
             <p>Clairvoyance</p>
@@ -18,7 +22,7 @@
                 <div id="scroll-select">
                     <% @champs.each do |champ| %>
                         <%= tag("div", {id: champ.name, class:"col-xs-2 champion-select", title: champ.name, datatype: champ.types}) %>
-                            <%= image_tag "LoLIcons/"+champ.image, class: "champ-icon" %>
+                            <%= image_tag "LoLIcons/"+champ.image, class: "champ-icon", id: "champ-pic"+champ.id %>
                         </div>
                     <% end %>
                 </div>

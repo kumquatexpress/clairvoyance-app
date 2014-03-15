@@ -172,3 +172,42 @@ function runsearch(){
     }
     $("#banner").html(substring).fadeIn(500);
 }
+
+function livesearch(){
+    var name = $("#live-search-name").val().split(' ').join('_');
+    var preid = "#champ-pic";
+    $.ajax({
+        url: "live/"+name,
+        type: "GET",
+        async: false,
+        dataType: "json",
+    }).success(function(html){
+        if(!html){
+            var errormsg = "Summoner not found";
+            $("#banner").html(errormsg).fadeIn(500).fadeOut(500);         
+        } else {
+            var blue = html._blueteam;
+            var purple = html._purpleteam;
+
+            blue_num = 1;
+            purple_num = 1;
+
+            $.each(blue, function(index){
+                var image = '<img class="champ-image" src=' + $(preid + blue[index]).attr("src") + ' data-id=' + blue[index] + '>';
+                $(blue_side+blue_num).html(image);
+                blue_num += 1;
+            });
+            run_calculation(blue_side);
+
+            $.each(purple, function(index){
+                var image = '<img class="champ-image" src=' + $(preid + purple[index]).attr("src") + ' data-id=' + purple[index] + '>';
+                $(purple_side+purple_num).html(image);
+                purple_num += 1;
+            });    
+            run_calculation(purple_side);
+        }    
+    }).error(function(html){
+        var errormsg = "Not in a game";
+        $("#banner").html(errormsg).fadeIn(500).fadeOut(500);        
+    });    
+}

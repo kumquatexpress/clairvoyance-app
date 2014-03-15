@@ -15,7 +15,7 @@ class MainController < ApplicationController
         summoner = params[:name]
         returnstring = %x(#{Constants.runpath} #{summoner})
 
-        render json: returnstring.lines[-1]
+        render json: returnstring.lines[-2]
     end
     # {"_blueteam":{"Kha\u0027Zix":121,"Rengar":107,"Fiora":114,"Ashe":22,"Zyra":143},"_purpleteam":{"Rengar":107,"Ashe":22,"Lulu":117,"Jarvan IV":59,"Karthus":30}}
 
