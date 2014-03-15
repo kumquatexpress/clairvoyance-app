@@ -17,4 +17,10 @@ class ChampionController < ApplicationController
 
     end
 
+    def by_id
+        id = params[:id]
+        champ = Champion.find(id)
+        render json: champ
+    end
+
 end

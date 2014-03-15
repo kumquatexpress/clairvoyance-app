@@ -21,7 +21,7 @@ var purple_num = 1;
 var blue_side = "#blue";
 var purple_side = "#purple";
 var tier_color_map = {
-    "-1": 'unranked',
+    "-1": 'unknown',
     "0": 'unranked',
     "1": 'bronze',
     "2": 'silver',
@@ -118,6 +118,93 @@ $(document).ready(function(){
         $("#banner").html(type).fadeIn(1000).fadeOut(2500);
     });
 
+    $("#live-search-name").keyup(function(event){
+        if(event.keyCode == 13){
+            $("#live-button").click();
+        }
+    });
+
+    $("#live-button").click(function livesearch(){
+        var name = $("#live-search-name").val().split(' ').join('_');
+        var preid = "#champ-pic";
+
+        $("#live-button").toggleClass('active');
+
+        $.ajax({
+            url: "live/"+name,
+            type: "GET",
+            async: true,
+            dataType: "json",
+        }).success(function(html){
+            if(!html){
+                var errormsg = "Summoner not found";
+                $("#banner").html(errormsg).fadeIn(500).fadeOut(500);
+                $("#live-button").toggleClass('active');    
+            } else {
+                var blue = html._blueteam;
+                var purple = html._purpleteam;
+
+                blue_num = 1;
+                purple_num = 1;
+
+                $.each(blue, function(index){
+                    var tier = blue[index][0];
+                    var champion = blue[index][1];
+                    var tier_color;
+                    /*if(tier == -1){
+                        $.ajax({
+                            url:"champion/"+champion,
+                            type: "GET"
+                        }).success(function(html){
+                            if(html["tier"]){
+                                tier_color = html["tier"].toLowerCase();
+                            }
+                        });
+                    } else {
+                        tier_color = tier_color_map[tier];
+                    }*/
+                    tier_color = tier_color_map[tier];
+                    var image = '<img class="row champ-image" src=' + $(preid + champion).attr("src") + ' data-id=' + champion + '>';
+                    var summoner_name = '<div class="row">' + index + '</div>'
+                    $(blue_side+blue_num).html(image + summoner_name).toggleClass(tier_color).attr("title", tier_color);
+                    blue_num += 1;
+                });
+                run_calculation(blue_side);
+
+                $.each(purple, function(index){
+                    var tier = purple[index][0];
+                    var tier_color;
+                    /*if(tier == -1){
+                        $.ajax({
+                            url:"champion/id/"+champion,
+                            type: "GET"
+                        }).success(function(html){
+                            if(html["tier"]){
+                                tier_color = html["tier"].toLowerCase();
+                            }
+                        });
+                    } else {
+                        tier_color = tier_color_map[tier];
+                    }*/
+                    tier_color = tier_color_map[tier];
+                    var champion = purple[index][1];
+                    var image = '<img class="row champ-image" src=' + $(preid + champion).attr("src") + ' data-id=' + champion + '>';
+                    var summoner_name = '<div class="row">' + index + '</div>'
+                    $(purple_side+purple_num).html(image + summoner_name).toggleClass(tier_color).attr("title", tier_color);
+                    purple_num += 1;
+                });    
+                run_calculation(purple_side);
+
+                $("#live-button").toggleClass('active');
+            }    
+        }).error(function(html){
+            var errormsg = "Not in a game";
+            $("#banner").html(errormsg).fadeIn(500).fadeOut(500);    
+
+            $("#live-button").toggleClass('active');
+        });   
+    });
+
 });
 
 function run_calculation(side){
@@ -186,57 +273,4 @@ function runsearch(){
         });
     }
     $("#banner").html(substring).fadeIn(500);
-}
-
-function livesearch(){
-    var name = $("#live-search-name").val().split(' ').join('_');
-    var preid = "#champ-pic";
-
-    $("#live-button").toggleClass('active');
-
-    $.ajax({
-        url: "live/"+name,
-        type: "GET",
-        async: true,
-        dataType: "json",
-    }).success(function(html){
-        if(!html){
-            var errormsg = "Summoner not found";
-            $("#banner").html(errormsg).fadeIn(500).fadeOut(500);
-            $("#live-button").toggleClass('active');    
-        } else {
-            var blue = html._blueteam;
-            var purple = html._purpleteam;
-
-            blue_num = 1;
-            purple_num = 1;
-
-            $.each(blue, function(index){
-                var tier = blue[index][0];
-                var champion = blue[index][1];
-                var image = '<img class="row champ-image" src=' + $(preid + champion).attr("src") + ' data-id=' + champion + '>';
-                var summoner_name = '<div class="row">' + index + '</div>'
-                $(blue_side+blue_num).html(image + summoner_name).toggleClass(tier_color_map[tier]);
-                blue_num += 1;
-            });
-            run_calculation(blue_side);
-
-            $.each(purple, function(index){
-                var tier = purple[index][0];
-                var champion = purple[index][1];
-                var image = '<img class="row champ-image" src=' + $(preid + champion).attr("src") + ' data-id=' + champion + '>';
-                var summoner_name = '<div class="row">' + index + '</div>'
-                $(purple_side+purple_num).html(image + summoner_name).toggleClass(tier_color_map[tier]).attr("title", tier_color_map[tier]);
-                purple_num += 1;
-            });    
-            run_calculation(purple_side);
-
-            $("#live-button").toggleClass('active');
-        }    
-    }).error(function(html){
-        var errormsg = "Not in a game";
-        $("#banner").html(errormsg).fadeIn(500).fadeOut(500);    
-
-        $("#live-button").toggleClass('active');
-    });    
 }
