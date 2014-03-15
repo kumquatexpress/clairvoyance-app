@@ -187,7 +187,8 @@ function livesearch(){
     }).success(function(html){
         if(!html){
             var errormsg = "Summoner not found";
-            $("#banner").html(errormsg).fadeIn(500).fadeOut(500);         
+            $("#banner").html(errormsg).fadeIn(500).fadeOut(500);
+            $("#live-button").toggleClass('active');    
         } else {
             var blue = html._blueteam;
             var purple = html._purpleteam;
