@@ -1,4 +1,5 @@
 require_relative "constants"
+require_relative 'load_players'
 require 'net/http'
 require 'json'
 
@@ -46,6 +47,9 @@ def get_json(player, key=API_KEY)
                     player_id = player["summonerId"]
                     p = Player.find_or_create_by(
                         id: player_id)
+                    if p.tier == "none"
+                        update_tier_one_player p
+                    end
                     players_returned << player_id
                 rescue
                     print "Duplicate Player!"

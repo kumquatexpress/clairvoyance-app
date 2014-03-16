@@ -1,7 +1,7 @@
 <body class="container-fluid">
     <div class="jumbotron">
     <p>
-Clairvoyance is a side project (unfinished) that attempts to analyze data from Riot's API about games and team compositions in order to assign "synergy ratings" for a given team.  The number that is spit out is calculated using the following method:
+Clairvoyance is a side project (unfinished) that attempts to analyze data from Riot's API about games and team compositions in order to assign "synergy ratings" for a given team.  The number that is spit out is calculated by treating a team's synergy as the bayesian product of each pair of champions, or the following method:
     </p>
     <ol>       
         <li>Given a 5v5 game of League of Legends, find the team compositions that were in the game.</li>
@@ -10,8 +10,10 @@ Clairvoyance is a side project (unfinished) that attempts to analyze data from R
         <li>The "compatibility score" between any two champions is just (wins/games); it is more accurately the percentage of games that have been won with these two champions on the same team.</li>
         <li>To find the score for an entire team, take the product of every unique pair of champions from the team and then take the nth root of this product, where n is the number of pairs.  This results in a number between 0 and 1, which I multiply by 100 and display.</li>
     </ol>
-    <p>
-The analysis method probably doesn't output exactly what I want yet, but it is a decent descriptor of the "overall win rate" of the composition.  Numbers should all be around 50, as most champions have a win rate somewhat close to 50%.  Supports have the highest win rates in overall gameplay, and this is also clear from the app.
+<p>For instance, if Sona and Vayne were on the same team 100 times and won 52 of those games, they would get a compatibility of 52%.  Then, if we added Karthus to the team, we could find his win rate with Sona (48%) and with Vayne (49%), multiply all of these numbers together and take the cube root (since we have 3 champions) to get 49.6%, which is the compatibility of the entire team.
+</p>
+
+<p>The analysis method probably doesn't output exactly what I want yet, but it is a decent descriptor of the "overall win rate" of the composition.  Numbers should all be around 50, as most champions have a win rate somewhat close to 50%.  Supports have the highest win rates in overall gameplay, and this is also clear from the app.
 
 The number that is given is NOT just the win rates of the champions plugged into some formula.  A champion's win rate will affect the synergy with their teams, since winning more will grant you a higher compatibility score with more champions and vice versa, but Clairvoyance aims to use data as a function of multiple champions to assess a composition.
 
