@@ -230,15 +230,16 @@ function run_calculation(side){
         champ_ids.push($(side + i + " img").attr("data-id"));
     }
 
-    $.ajax({
-        url: "champion/teamcomp/"+champ_ids,
-        type: "GET",
-        async: false,
-        dataType: "json"
-    }).success(function(html){
-        teamcompat = html["compat"];
-    });
-
+    if(champ_ids.length > 1){
+        $.ajax({
+            url: "champion/teamcomp/"+champ_ids,
+            type: "GET",
+            async: false,
+            dataType: "json"
+        }).success(function(html){
+            teamcompat = html["compat"];
+        });
+    } 
     $(side+"compat").html(Math.round(teamcompat*10000)/100).fadeIn(500);
 
 }

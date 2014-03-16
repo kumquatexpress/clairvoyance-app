@@ -49,13 +49,18 @@ class Compatibility < ActiveRecord::Base
 
     def self.get_teamcomp_compat(cid_list)
         total_compat = 1;
-        cid_list.each do |cid|
+
+        cid_list.each_index do | index1 |
             indiv_compat = 1;
-            compat = Champion.find(cid).return_full_compat
-            cid_list.each do |cid|
-                indiv_compat *= compat.get_compat(cid)
+            cid1 = cid_list[index1]
+            compat = Champion.find(cid1).return_full_compat
+            cid_list.each_index do | index2 |
+                if index1 != index2
+                    cid2 = cid_list[index2]
+                    indiv_compat *= compat.get_compat(cid2)
+                end
             end
-            indiv_compat **= (1.0/cid_list.length)
+            indiv_compat **= (1.0/(cid_list.length-1))
             total_compat *= indiv_compat
         end
         total_compat ** (1.0/cid_list.length)
